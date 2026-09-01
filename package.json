@@ -1,0 +1,29 @@
+{
+  "name": "shredly-webmcp",
+  "version": "0.1.0",
+  "description": "Bridge Shredly hosted MCP servers to the browser's WebMCP API (document.modelContext)",
+  "type": "module",
+  "main": "./shredly-webmcp.js",
+  "module": "./shredly-webmcp.js",
+  "exports": {
+    ".": "./shredly-webmcp.js"
+  },
+  "files": [
+    "shredly-webmcp.js",
+    "README.md"
+  ],
+  "keywords": [
+    "shredly",
+    "mcp",
+    "webmcp",
+    "model-context-protocol",
+    "chatgpt",
+    "ai"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shredly/shredly-webmcp"
+  },
+  "homepage": "https://docs.shredly.io"
+}
