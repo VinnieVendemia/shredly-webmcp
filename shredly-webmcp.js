@@ -8,24 +8,24 @@
  * — no redeploy needed when tools change in Shredly.
  *
  * Usage (ES module):
- *   import { ShrEdlyWebMCP } from './shredly-webmcp.js'
- *   ShrEdlyWebMCP.init({ slug: 'my-api' })
+ *   import { ShredlyWebMCP } from './shredly-webmcp.js'
+ *   ShredlyWebMCP.init({ slug: 'my-api' })
  *
  * Usage with per-user auth (token injected at call time, not init time):
- *   ShrEdlyWebMCP.init({
+ *   ShredlyWebMCP.init({
  *     slug: 'my-api',
  *     getToken: () => localStorage.getItem('user_token'),
  *   })
  *
- * Usage via <script> tag (exposes window.ShrEdlyWebMCP):
+ * Usage via <script> tag (exposes window.ShredlyWebMCP):
  *   <script src="shredly-webmcp.js"></script>
- *   <script>ShrEdlyWebMCP.init({ slug: 'my-api', getToken: () => ... })</script>
+ *   <script>ShredlyWebMCP.init({ slug: 'my-api', getToken: () => ... })</script>
  */
 
 const DEFAULT_BASE_URL = 'https://mcp.shredly.io';
 const DEFAULT_POLL_INTERVAL = 30_000;
 
-class ShrEdlyWebMCPBridge {
+class ShredlyWebMCPBridge {
   constructor() {
     this._config = null;
     this._registered = new Map(); // internal registry for UI / getTools()
@@ -50,7 +50,7 @@ class ShrEdlyWebMCPBridge {
    * @param {function}        [opts.onSync]        - Called after each sync: ({ tools, added, lastSync })
    */
   async init({ slug, getToken, baseUrl = DEFAULT_BASE_URL, pollInterval = DEFAULT_POLL_INTERVAL, onSync } = {}) {
-    if (!slug) throw new Error('ShrEdlyWebMCP.init requires a slug');
+    if (!slug) throw new Error('ShredlyWebMCP.init requires a slug');
 
     this._config = { slug, getToken: getToken ?? null, baseUrl, pollInterval };
     this._onSync = onSync ?? null;
@@ -260,10 +260,10 @@ class ShrEdlyWebMCPBridge {
   }
 }
 
-const ShrEdlyWebMCP = new ShrEdlyWebMCPBridge();
+const ShredlyWebMCP = new ShredlyWebMCPBridge();
 
-export { ShrEdlyWebMCP };
+export { ShredlyWebMCP };
 
 if (typeof window !== 'undefined') {
-  window.ShrEdlyWebMCP = ShrEdlyWebMCP;
+  window.ShredlyWebMCP = ShredlyWebMCP;
 }

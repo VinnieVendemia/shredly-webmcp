@@ -23,7 +23,7 @@ Add your Shredly MCP to any webpage and AI agents (ChatGPT, Codex) can discover 
 ```html
 <script src="https://cdn.shredly.io/webmcp.js"></script>
 <script>
-  ShrEdlyWebMCP.init({ slug: 'your-mcp-slug' })
+  ShredlyWebMCP.init({ slug: 'your-mcp-slug' })
 </script>
 ```
 
@@ -34,8 +34,8 @@ npm install shredly-webmcp
 ```
 
 ```js
-import { ShrEdlyWebMCP } from 'shredly-webmcp'
-ShrEdlyWebMCP.init({ slug: 'your-mcp-slug' })
+import { ShredlyWebMCP } from 'shredly-webmcp'
+ShredlyWebMCP.init({ slug: 'your-mcp-slug' })
 ```
 
 ---
@@ -47,7 +47,7 @@ ShrEdlyWebMCP.init({ slug: 'your-mcp-slug' })
 ```html
 <script src="https://cdn.shredly.io/webmcp.js"></script>
 <script>
-  ShrEdlyWebMCP.init({ slug: 'your-mcp-slug' })
+  ShredlyWebMCP.init({ slug: 'your-mcp-slug' })
 </script>
 ```
 
@@ -58,7 +58,7 @@ If your tools require a user token (e.g. the user has logged into your site), pa
 ```html
 <script src="https://cdn.shredly.io/webmcp.js"></script>
 <script>
-  ShrEdlyWebMCP.init({
+  ShredlyWebMCP.init({
     slug: 'your-mcp-slug',
     getToken: () => localStorage.getItem('user_token'),
   })
@@ -68,7 +68,7 @@ If your tools require a user token (e.g. the user has logged into your site), pa
 `getToken` can also be async, for token refresh flows:
 
 ```js
-ShrEdlyWebMCP.init({
+ShredlyWebMCP.init({
   slug: 'your-mcp-slug',
   getToken: async () => {
     const token = localStorage.getItem('token')
@@ -84,7 +84,7 @@ Call `refresh()` to immediately re-sync tools with the new token, rather than wa
 ```js
 async function onLoginSuccess(token) {
   localStorage.setItem('user_token', token)
-  await ShrEdlyWebMCP.refresh()
+  await ShredlyWebMCP.refresh()
 }
 ```
 
@@ -92,7 +92,7 @@ async function onLoginSuccess(token) {
 
 ## API
 
-### `ShrEdlyWebMCP.init(opts)`
+### `ShredlyWebMCP.init(opts)`
 
 Fetches tool definitions from Shredly, registers them with the browser's WebMCP API, and starts polling for changes.
 
@@ -104,23 +104,23 @@ Fetches tool definitions from Shredly, registers them with the browser's WebMCP 
 | `pollInterval` | `number` | `30000` | How often to check for new tools (ms). Set to `0` to disable. |
 | `onSync` | `({ tools, added, lastSync }) => void` | — | Called after each sync. Useful for updating UI. |
 
-### `ShrEdlyWebMCP.reconnect(opts)`
+### `ShredlyWebMCP.reconnect(opts)`
 
 Stop polling, clear registered tools, and re-initialize with new options. Use when the user changes their connected MCP or logs into a different account.
 
-### `ShrEdlyWebMCP.refresh()`
+### `ShredlyWebMCP.refresh()`
 
 Manually trigger a tool sync. Useful to call immediately after a user logs in so their token is available for the next tool call without waiting for the next poll.
 
-### `ShrEdlyWebMCP.getTools()`
+### `ShredlyWebMCP.getTools()`
 
 Returns the array of currently registered tool definitions.
 
-### `ShrEdlyWebMCP.executeTool(name, args)`
+### `ShredlyWebMCP.executeTool(name, args)`
 
 Directly invoke a tool by name, bypassing `document.modelContext`. Useful for building your own tool-testing UI.
 
-### `ShrEdlyWebMCP.stop()`
+### `ShredlyWebMCP.stop()`
 
 Stop polling.
 
