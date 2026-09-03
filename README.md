@@ -1,5 +1,7 @@
 # shredly-webmcp
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 Bridge [Shredly](https://shredly.io) hosted MCP servers to the browser's [WebMCP API](https://learn.chatgpt.com/docs/webmcp) (`document.modelContext`).
 
 Add your Shredly MCP to any webpage and AI agents (ChatGPT, Codex) can discover and invoke your tools as native site tools — no redeploy needed when you add or update tools in your Shredly dashboard.
@@ -21,19 +23,10 @@ Add your Shredly MCP to any webpage and AI agents (ChatGPT, Codex) can discover 
 ### CDN (recommended — zero build step)
 
 ```html
-<script src="https://cdn.shredly.io/webmcp.js"></script>
-<script>
+<script type="module">
+  import { ShredlyWebMCP } from 'https://cdn.shredly.io/shredly-webmcp.js'
   ShredlyWebMCP.init({ slug: 'your-mcp-slug' })
 </script>
-```
-
-### ES module (CDN, no build step)
-
-If you're using native ES modules or a bundler that supports external URLs:
-
-```js
-import { ShredlyWebMCP } from 'https://cdn.shredly.io/shredly-webmcp.js'
-ShredlyWebMCP.init({ slug: 'your-mcp-slug' })
 ```
 
 ---
@@ -43,8 +36,8 @@ ShredlyWebMCP.init({ slug: 'your-mcp-slug' })
 ### Public MCP (no user auth)
 
 ```html
-<script src="https://cdn.shredly.io/webmcp.js"></script>
-<script>
+<script type="module">
+  import { ShredlyWebMCP } from 'https://cdn.shredly.io/shredly-webmcp.js'
   ShredlyWebMCP.init({ slug: 'your-mcp-slug' })
 </script>
 ```
@@ -54,8 +47,8 @@ ShredlyWebMCP.init({ slug: 'your-mcp-slug' })
 If your tools require a user token (e.g. the user has logged into your site), pass a `getToken` function. It's called fresh on every tool invocation — so it always reflects the current session state, even if the user logs in after the page loads.
 
 ```html
-<script src="https://cdn.shredly.io/webmcp.js"></script>
-<script>
+<script type="module">
+  import { ShredlyWebMCP } from 'https://cdn.shredly.io/shredly-webmcp.js'
   ShredlyWebMCP.init({
     slug: 'your-mcp-slug',
     getToken: () => localStorage.getItem('user_token'),
