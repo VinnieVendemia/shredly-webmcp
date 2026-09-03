@@ -1,2 +1,2 @@
-// CDN entry point — re-exports the library and sets window.ShredlyWebMCP
-export { ShredlyWebMCP } from './shredly-webmcp.js';
+// CDN entry point — sets window.ShredlyWebMCP via side effect
+import './shredly-webmcp.js';
