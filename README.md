@@ -27,14 +27,12 @@ Add your Shredly MCP to any webpage and AI agents (ChatGPT, Codex) can discover 
 </script>
 ```
 
-### npm
+### ES module (CDN, no build step)
 
-```bash
-npm install shredly-webmcp
-```
+If you're using native ES modules or a bundler that supports external URLs:
 
 ```js
-import { ShredlyWebMCP } from 'shredly-webmcp'
+import { ShredlyWebMCP } from 'https://cdn.shredly.io/shredly-webmcp.js'
 ShredlyWebMCP.init({ slug: 'your-mcp-slug' })
 ```
 
